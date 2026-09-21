@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameZone - Play Free Online Browser Games</title>
+  <meta name="description" content="Play free high-quality browser games instantly on GameZone. No downloads, no installation required. Racing, Driving, Arcade, Sports, Action, and Multiplayer games.">
+  <meta name="keywords" content="free browser games, online games, highway traffic, gta simulator, drift king, play free games, html5 games">
+  <meta name="author" content="GameZone">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="GameZone - Play Free Online Browser Games">
+  <meta property="og:description" content="Play free high-quality browser games instantly on GameZone. Racing, Driving, Arcade, Sports, Action, and Multiplayer games.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gamezone.example.com">
+
+  <style>
+    /* --------------------------------------------------
+       CSS VARIABLES & BASE STYLES
+       Modern Dark Tech Theme with Georgia Font
+    -------------------------------------------------- */
+    :root {
+      --bg-main: #0c0d10;
+      --bg-card: #15181e;
+      --bg-card-hover: #1e222b;
+      --bg-nav: #111317;
+      --accent-red: #ff3b30;
+      --accent-red-hover: #e02d22;
+      --accent-glow: rgba(255, 59, 48, 0.25);
+      --text-main: #f0f2f5;
+      --text-muted: #9ba1b0;
+      --border-color: #242832;
+      --border-accent: #323846;
+      --font-primary: 'Georgia', serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --nav-height: 70px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    /* --------------------------------------------------
+       NAVIGATION BAR
+    -------------------------------------------------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg-nav);
+      border-bottom: 1px solid var(--border-color);
+      height: var(--nav-height);
+    }
+
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.6rem;
+      font-weight: bold;
+      letter-spacing: -0.5px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .logo span {
+      color: var(--accent-red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      padding: 0.5rem 0.85rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      transition: color 0.2s ease, background-color 0.2s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #fff;
+      background-color: var(--border-color);
+    }
+
+    .nav-search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      max-width: 280px;
+    }
+
+    .nav-search input {
+      width: 100%;
+      padding: 0.5rem 0.8rem 0.5rem 2.2rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      border-radius: 2px;
+      transition: border-color 0.2s ease;
+    }
+
+    .nav-search input:focus {
+      outline: none;
+      border-color: var(--accent-red);
+    }
+
+    .nav-search svg {
+      position: absolute;
+      left: 0.75rem;
+      width: 14px;
+      height: 14px;
+      fill: var(--text-muted);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.5rem;
+    }
+
+    /* --------------------------------------------------
+       LAYOUT CONTAINER
+    -------------------------------------------------- */
+    main {
+      flex: 1;
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    /* --------------------------------------------------
+       HERO SECTION
+    -------------------------------------------------- */
+    .hero {
+      background: linear-gradient(180deg, #181b22 0%, var(--bg-card) 100%);
+      border: 1px solid var(--border-color);
+      padding: 3.5rem 2.5rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: normal;
+      margin-bottom: 0.8rem;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 1.8rem auto;
+      line-height: 1.5;
+      font-family: var(--font-sans);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background-color: var(--accent-red);
+      color: #fff;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 2px;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-red-hover);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background-color: var(--bg-card-hover);
+      border: 1px solid var(--border-accent);
+      color: var(--text-main);
+      padding: 0.7rem 1.5rem;
+      font-size: 0.9rem;
+      border-radius: 2px;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--border-color);
+      color: #fff;
+    }
+
+    /* --------------------------------------------------
+       SECTION HEADINGS
+    -------------------------------------------------- */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.2rem;
+      background-color: var(--accent-red);
+    }
+
+    .view-all-link {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--accent-red);
+    }
+
+    .view-all-link:hover {
+      text-decoration: underline;
+    }
+
+    /* --------------------------------------------------
+       GAME CARDS & GRID
+    -------------------------------------------------- */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .game-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-accent);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Visual Element for Game Cards */
+    .card-visual {
+      height: 140px;
+      background: linear-gradient(135deg, #181b22 0%, #0d0f13 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-bottom: 1px solid var(--border-color);
+      user-select: none;
+      overflow: hidden;
+    }
+
+    .card-visual-emoji {
+      font-size: 3.5rem;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+      transition: transform 0.2s ease;
+    }
+
+    .game-card:hover .card-visual-emoji {
+      transform: scale(1.1);
+    }
+
+    .card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-category {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent-red);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-description {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: auto;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-play {
+      background-color: var(--border-color);
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+      border-radius: 2px;
+      transition: background-color 0.2s ease;
+      width: 100%;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .game-card:hover .btn-play {
+      background-color: var(--accent-red);
+    }
+
+    /* --------------------------------------------------
+       FEATURED GAME BANNER
+    -------------------------------------------------- */
+    .featured-banner {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+    }
+
+    .featured-info {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-badge {
+      display: inline-block;
+      background-color: rgba(255, 59, 48, 0.15);
+      color: var(--accent-red);
+      border: 1px solid rgba(255, 59, 48, 0.3);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.25rem 0.6rem;
+      align-self: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .featured-title {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+      color: #fff;
+    }
+
+    .featured-desc {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .featured-visual {
+      background: linear-gradient(135deg, #1f232d 0%, #111318 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid var(--border-color);
+      position: relative;
+      min-height: 220px;
+    }
+
+    .featured-visual-emoji {
+      font-size: 6rem;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.6));
+    }
+
+    /* --------------------------------------------------
+       CATEGORIES & SEARCH BAR ON GAMES PAGE
+    -------------------------------------------------- */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      background-color: var(--bg-card);
+      padding: 1rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      padding: 0.4rem 0.9rem;
+      background-color: var(--bg-main);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+
+    .pill:hover, .pill.active {
+      color: #fff;
+      background-color: var(--border-color);
+      border-color: var(--border-accent);
+    }
+
+    .pill.active {
+      border-bottom: 2px solid var(--accent-red);
+    }
+
+    .search-input-large {
+      padding: 0.5rem 1rem;
+      background-color: var(--bg-main);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      border-radius: 2px;
+      min-width: 240px;
+    }
+
+    .search-input-large:focus {
+      outline: none;
+      border-color: var(--accent-red);
+    }
+
+    /* --------------------------------------------------
+       INDIVIDUAL GAME VIEW & IFRAME CONTAINER
+    -------------------------------------------------- */
+    .game-view-header {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .game-title-meta h1 {
+      font-size: 2.2rem;
+      font-weight: normal;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+
+    .game-title-meta .meta-tags {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .tag-cat {
+      color: var(--accent-red);
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .iframe-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: #000;
+      border: 1px solid var(--border-color);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .game-details-box {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .game-details-box h2 {
+      font-size: 1.2rem;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .game-details-box p {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* --------------------------------------------------
+       ABOUT VIEW
+    -------------------------------------------------- */
+    .about-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .about-card h1 {
+      font-size: 2.2rem;
+      font-weight: normal;
+      margin-bottom: 1.2rem;
+      color: #fff;
+    }
+
+    .about-card p {
+      font-family: var(--font-sans);
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .about-card h2 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      color: #fff;
+      margin: 1.8rem 0 0.8rem 0;
+    }
+
+    /* --------------------------------------------------
+       FOOTER
+    -------------------------------------------------- */
+    footer {
+      background-color: var(--bg-nav);
+      border-top: 1px solid var(--border-color);
+      padding: 2.5rem 1.5rem;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-title {
+      font-family: var(--font-primary);
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+    }
+
+    /* --------------------------------------------------
+       RESPONSIVE DESIGN
+    -------------------------------------------------- */
+    @media (max-width: 850px) {
+      .featured-banner {
+        grid-template-columns: 1fr;
+      }
+      .featured-visual {
+        min-height: 160px;
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .nav-links.mobile-open {
+        display: flex;
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        background-color: var(--bg-nav);
+        flex-direction: column;
+        padding: 1rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .nav-search {
+        max-width: 180px;
+      }
+      .iframe-wrapper {
+        aspect-ratio: 4 / 3;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Persistent Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#home" class="logo">GAME<span>ZONE</span></a>
+
+      <div class="nav-search">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="global-search" placeholder="Search games..." onkeyup="handleGlobalSearch(event)">
+      </div>
+
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation">&#9776;</button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" id="nav-home">Home</a></li>
+        <li><a href="#games" id="nav-games">Games</a></li>
+        <li><a href="#racing" id="nav-racing">Racing</a></li>
+        <li><a href="#driving" id="nav-driving">Driving</a></li>
+        <li><a href="#arcade" id="nav-arcade">Arcade</a></li>
+        <li><a href="#about" id="nav-about">About</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="app-content">
+
+    <!-- 1. HOMEPAGE VIEW -->
+    <section id="view-home" class="page-section">
+      <div class="hero">
+        <h1>Play Free Browser Games</h1>
+        <p>Instant access to top-tier online browser games. No installations, no downloads—just high-speed action straight in your web browser.</p>
+        <a href="#games" class="btn-primary">Browse All Games</a>
+      </div>
+
+      <!-- Dynamic Featured Game Selection -->
+      <div id="featured-game-container"></div>
+
+      <!-- Recently Played Section -->
+      <div id="recently-played-section" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Recently Played</h2>
+        </div>
+        <div class="games-grid" id="recently-played-grid"></div>
+      </div>
+
+      <!-- Featured Grid -->
+      <div class="section-header">
+        <h2 class="section-title">Featured Titles</h2>
+        <a href="#games" class="view-all-link">View All Games &rarr;</a>
+      </div>
+      <div class="games-grid" id="home-featured-grid"></div>
+    </section>
+
+    <!-- 2. ALL GAMES / CATEGORY VIEW -->
+    <section id="view-games" class="page-section">
+      <div class="section-header">
+        <h1 class="section-title" id="games-page-title">All Games</h1>
+      </div>
+
+      <div class="controls-bar">
+        <div class="category-pills">
+          <button class="pill" data-cat="all" onclick="filterCategory('all')">All</button>
+          <button class="pill" data-cat="racing" onclick="filterCategory('racing')">Racing</button>
+          <button class="pill" data-cat="driving" onclick="filterCategory('driving')">Driving</button>
+          <button class="pill" data-cat="arcade" onclick="filterCategory('arcade')">Arcade</button>
+          <button class="pill" data-cat="sports" onclick="filterCategory('sports')">Sports</button>
+          <button class="pill" data-cat="action" onclick="filterCategory('action')">Action</button>
+          <button class="pill" data-cat="multiplayer" onclick="filterCategory('multiplayer')">Multiplayer</button>
+        </div>
+        <input type="text" id="games-search" class="search-input-large" placeholder="Filter games by title..." oninput="handleGamesSearch()">
+      </div>
+
+      <div class="games-grid" id="all-games-grid"></div>
+    </section>
+
+    <!-- 3. INDIVIDUAL GAME PLAY VIEW -->
+    <section id="view-game-play" class="page-section">
+      <div class="game-view-header">
+        <div class="game-title-meta">
+          <h1 id="play-title">Game Title</h1>
+          <div class="meta-tags">
+            <span class="tag-cat" id="play-category">Category</span>
+            <span>&bull;</span>
+            <span>Free Browser Game</span>
+          </div>
+        </div>
+        <a href="#games" class="btn-secondary">&larr; Back to Games</a>
+      </div>
+
+      <div class="iframe-wrapper" id="iframe-container">
+        <!-- Official Iframe safely loaded dynamically here -->
+      </div>
+
+      <div class="game-details-box">
+        <h2>About <span id="play-desc-title">this game</span></h2>
+        <p id="play-description">Game description text goes here.</p>
+      </div>
+
+      <div class="section-header">
+        <h2 class="section-title">More Games You Might Like</h2>
+      </div>
+      <div class="games-grid" id="related-games-grid"></div>
+    </section>
+
+    <!-- 4. ABOUT VIEW -->
+    <section id="view-about" class="page-section">
+      <div class="about-card">
+        <h1>About GameZone</h1>
+        <p>GameZone is a modern web platform dedicated to delivering fast, accessible browser gaming directly to players worldwide. We eliminate the barrier of downloads, launchers, and heavy system installations.</p>
+        
+        <h2>Official Embedded Content</h2>
+        <p>All games provided on GameZone are played through official, authorized embed links supplied by OnlineGames.io. GameZone does not re-host, proxy, copy, or modify any game files, guaranteeing that game developers retain full control and attribution for their original creations.</p>
+
+        <h2>Performance & Design</h2>
+        <p>Built with a lightweight single-page architecture, GameZone provides smooth dynamic hash routing without unnecessary background reloads or bloated external scripts, ensuring low memory usage and quick loading times across desktop and mobile browsers alike.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Persistent Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="logo">GAME<span>ZONE</span></div>
+        <p>Your instant hub for free online browser gaming.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-title">Navigation</div>
+        <a href="#home">Home</a>
+        <a href="#games">All Games</a>
+        <a href="#about">About Platform</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-title">Categories</div>
+        <a href="#racing">Racing</a>
+        <a href="#driving">Driving</a>
+        <a href="#arcade">Arcade</a>
+        <a href="#sports">Sports</a>
+        <a href="#action">Action</a>
+        <a href="#multiplayer">Multiplayer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* --------------------------------------------------
+       GAME DATA REPOSITORY (19 OFFICIAL GAMES)
+    -------------------------------------------------- */
+    const GAMES_DATA = [
+      {
+        id: "highway-traffic",
+        name: "Highway Traffic",
+        category: "driving",
+        description: "Navigate through intense highway traffic at high speeds. Dodge cars, collect points, and test your reflexes in high-speed traffic modes.",
+        url: "https://www.onlinegames.io/games/2022/unity/highway-traffic/index.html",
+        visual: "🚗"
+      },
+      {
+        id: "mini-cars-racing",
+        name: "Mini Cars Racing",
+        category: "racing",
+        description: "Control miniature racing cars across complex circuit tracks. Outmaneuver opponents in fast-paced arcade style competitions.",
+        url: "https://cloud.onlinegames.io/games/2021/unity/mini-cars-racing/index-og.html",
+        visual: "🏎️"
+      },
+      {
+        id: "escape-car-2",
+        name: "Escape Car 2",
+        category: "driving",
+        description: "High-octane vehicular escape simulator. Evade obstacles and surrounding pursuits in high-stakes driving environments.",
+        url: "https://cloud.onlinegames.io/games/2026/unity/escape-car-2/game.html",
+        visual: "🚘💨"
+      },
+      {
+        id: "escape-car",
+        name: "Escape Car",
+        category: "driving",
+        description: "Drive to survive through intricate courses. Speed up, drift through tight turns, and outrun hazards.",
+        url: "https://cloud.onlinegames.io/games/2025/unity2/escape-car/index-og.html",
+        visual: "🚗💨"
+      },
+      {
+        id: "marble-run",
+        name: "Marble Run",
+        category: "arcade",
+        description: "Physics-based marble course challenge. Guide marbles through elaborate tracks, loops, and mechanical obstacles.",
+        url: "https://cloud.onlinegames.io/games/2026/galatrix/marble-run/game.html",
+        visual: "🔵"
+      },
+      {
+        id: "steal-brainrots-multiplayer",
+        name: "Steal Brainrots Multiplayer",
+        category: "multiplayer",
+        description: "Engage in competitive online multiplayer action. Outsmart other players in real-time strategic arenas.",
+        url: "https://cloud.onlinegames.io/games/2026/unity/steal-brainrots-multiplayer/game.html",
+        visual: "🧠"
+      },
+      {
+        id: "gta-simulator",
+        name: "GTA Simulator",
+        category: "action",
+        description: "Open-world style urban driving simulator. Explore open city maps, drive various vehicles, and complete missions.",
+        url: "https://www.onlinegames.io/games/2023/unity2/gta-simulator/index.html",
+        visual: "🚘🏙️"
+      },
+      {
+        id: "drift-king",
+        name: "Drift King",
+        category: "racing",
+        description: "Master the art of precision drifting. Score points by holding high-angle drifts on tight racetrack turns.",
+        url: "https://www.onlinegames.io/games/2024/unity/drift-king/index.html",
+        visual: "🏎️💨"
+      },
+      {
+        id: "edys-car-simulator",
+        name: "Edy's Car Simulator",
+        category: "driving",
+        description: "Realistic physics-driven vehicle simulation featuring realistic car handling, suspension, and road mechanics.",
+        url: "https://www.onlinegames.io/games/2022/unity/edys-car-simulator/index.html",
+        visual: "🚗"
+      },
+      {
+        id: "pixel-driver",
+        name: "Pixel Driver",
+        category: "driving",
+        description: "Retro-styled blocky driving challenge. Navigate dense traffic grid layouts in a vibrant voxelized art style.",
+        url: "https://cloud.onlinegames.io/games/2021/unity3/pixel-driver/index-og.html",
+        visual: "🕹️🚗"
+      },
+      {
+        id: "hover-racer",
+        name: "Hover Racer",
+        category: "racing",
+        description: "Futuristic anti-gravity hovercraft racing. Blast through futuristic tracks at supersonic speeds.",
+        url: "https://www.onlinegames.io/games/2021/unity3/hover-racer/index.html",
+        visual: "🛸🏎️"
+      },
+      {
+        id: "survival-karts",
+        name: "Survival Karts",
+        category: "racing",
+        description: "Combat kart racing arena. Battle rival kart racers with power-ups and hazardous arena elements.",
+        url: "https://cloud.onlinegames.io/games/2024/unity3/survival-karts/index-og.html",
+        visual: "🏎️💥"
+      },
+      {
+        id: "jeep-racing",
+        name: "Jeep Racing",
+        category: "racing",
+        description: "Rugged off-road 4x4 racing. Conquer steep hills, muddy tracks, and rough terrain against tough AI.",
+        url: "https://www.onlinegames.io/games/2023/freezenova.com/jeep-racing/index.html",
+        visual: "🚙"
+      },
+      {
+        id: "stunt-rider",
+        name: "Stunt Rider",
+        category: "racing",
+        description: "High-flying motorcycle stunt game. Execute extreme mid-air flips, jump massive ramps, and land safely.",
+        url: "https://www.onlinegames.io/games/2024/unity/stunt-rider/index.html",
+        visual: "🏍️"
+      },
+      {
+        id: "city-stunts",
+        name: "City Stunts",
+        category: "driving",
+        description: "Drive sports cars across massive elevated ramps, loops, and skyscraper jump courses built over a metropolis.",
+        url: "https://www.onlinegames.io/games/2023/unity3/city-stunts/index.html",
+        visual: "🏙️🚗"
+      },
+      {
+        id: "basketball-king",
+        name: "Basketball King",
+        category: "sports",
+        description: "Precision arcade hoops challenge. Test your timing and shot trajectory to rack up high combo scores.",
+        url: "https://cloud.onlinegames.io/games/2024/construct/316/basketball-king/index-og.html",
+        visual: "🏀"
+      },
+      {
+        id: "highway-racer-2",
+        name: "Highway Racer 2",
+        category: "racing",
+        description: "The sequel to the classic highway speed racer. Features updated graphics, new supercars, and intense weather modes.",
+        url: "https://www.onlinegames.io/games/2022/unity2/highway-racer-2/index.html",
+        visual: "🛣️🏎️"
+      },
+      {
+        id: "urban-sniper",
+        name: "Urban Sniper",
+        category: "action",
+        description: "Tactical marksmanship mission game. Take down target objectives across urban rooftop maps with speed and accuracy.",
+        url: "https://www.onlinegames.io/games/2022/unity2/urban-sniper/index.html",
+        visual: "🎯"
+      },
+      {
+        id: "cookie-clicker-pro",
+        name: "Cookie Clicker Pro",
+        category: "arcade",
+        description: "Addictive incremental clicker game. Bake millions of cookies, purchase automated upgrades, and unlock achievements.",
+        url: "https://cloud.onlinegames.io/games/2025/unity/cookie-clicker-pro/index-og.html",
+        visual: "🍪"
+      }
+    ];
+
+    /* --------------------------------------------------
+       APP STATE (IN-MEMORY RECENTLY PLAYED)
+    -------------------------------------------------- */
+    let currentCategory = 'all';
+    let searchQuery = '';
+    
+    // In-memory array for Recently Played (Resets strictly on reload/refresh)
+    let recentlyPlayedList = [];
+
+    // Select ONE random featured game strictly once on page initialization
+    const randomFeaturedGame = GAMES_DATA[Math.floor(Math.random() * GAMES_DATA.length)];
+
+    /* --------------------------------------------------
+       ROUTER
+    -------------------------------------------------- */
+    function router() {
+      const hash = window.location.hash.replace('#', '') || 'home';
+      
+      // Hide all pages
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+      // Check for Game View route: game/:id
+      if (hash.startsWith('game/')) {
+        const gameId = hash.replace('game/', '');
+        renderGamePlayPage(gameId);
+        showPage('view-game-play');
+      } else if (['racing', 'driving', 'arcade', 'sports', 'action', 'multiplayer'].includes(hash)) {
+        currentCategory = hash;
+        searchQuery = '';
+        renderGamesPage();
+        showPage('view-games');
+        setActiveNav(hash);
+      } else if (hash === 'games') {
+        currentCategory = 'all';
+        searchQuery = '';
+        renderGamesPage();
+        showPage('view-games');
+        setActiveNav('games');
+      } else if (hash === 'about') {
+        showPage('view-about');
+        setActiveNav('about');
+      } else {
+        // Default Home
+        renderHomePage();
+        showPage('view-home');
+        setActiveNav('home');
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    function showPage(id) {
+      const page = document.getElementById(id);
+      if (page) page.classList.add('active');
+    }
+
+    function setActiveNav(navKey) {
+      const navEl = document.getElementById(`nav-${navKey}`);
+      if (navEl) navEl.classList.add('active');
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('nav-links').classList.toggle('mobile-open');
+    }
+
+    /* --------------------------------------------------
+       CARD RENDER HELPER (PRESERVED ORIGINAL DESIGN + VISUAL EMOJI)
+    -------------------------------------------------- */
+    function createGameCardHTML(game) {
+      return `
+        <div class="game-card">
+          <div class="card-visual">
+            <span class="card-visual-emoji">${game.visual || '🎮'}</span>
+          </div>
+          <div class="card-body">
+            <div class="card-category">${game.category}</div>
+            <h3 class="card-title">${game.name}</h3>
+            <p class="card-description">${game.description}</p>
+            <div class="card-footer">
+              <a href="#game/${game.id}" class="btn-play">Play Now</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* --------------------------------------------------
+       PAGE RENDERING
+    -------------------------------------------------- */
+
+    // Render Home Page
+    function renderHomePage() {
+      // 1. Featured Banner (Random Game)
+      const featuredContainer = document.getElementById('featured-game-container');
+      featuredContainer.innerHTML = `
+        <div class="featured-banner">
+          <div class="featured-info">
+            <span class="featured-badge">Random Featured Game</span>
+            <h2 class="featured-title">${randomFeaturedGame.name}</h2>
+            <p class="featured-desc">${randomFeaturedGame.description}</p>
+            <div>
+              <a href="#game/${randomFeaturedGame.id}" class="btn-primary">Play Game Now</a>
+            </div>
+          </div>
+          <div class="featured-visual">
+            <span class="featured-visual-emoji">${randomFeaturedGame.visual || '🎮'}</span>
+          </div>
+        </div>
+      `;
+
+      // 2. Featured Grid (First 6 games)
+      const homeGrid = document.getElementById('home-featured-grid');
+      homeGrid.innerHTML = GAMES_DATA.slice(0, 6).map(g => createGameCardHTML(g)).join('');
+
+      // 3. Recently Played Section (In-Memory State)
+      const recentSection = document.getElementById('recently-played-section');
+      const recentGrid = document.getElementById('recently-played-grid');
+
+      if (recentlyPlayedList.length > 0) {
+        recentSection.style.display = 'block';
+        recentGrid.innerHTML = recentlyPlayedList.map(g => createGameCardHTML(g)).join('');
+      } else {
+        recentSection.style.display = 'none';
+      }
+    }
+
+    // Render All Games & Categories
+    function renderGamesPage() {
+      const pageTitle = document.getElementById('games-page-title');
+      pageTitle.textContent = currentCategory === 'all' ? 'All Games' : `${currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)} Games`;
+
+      // Update Pill Buttons Active State
+      document.querySelectorAll('.pill').forEach(btn => {
+        if (btn.getAttribute('data-cat') === currentCategory) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Filter Games
+      let filtered = GAMES_DATA;
+      if (currentCategory !== 'all') {
+        filtered = filtered.filter(g => g.category.toLowerCase() === currentCategory.toLowerCase());
+      }
+      if (searchQuery.trim() !== '') {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(g => g.name.toLowerCase().includes(q) || g.description.toLowerCase().includes(q) || g.category.toLowerCase().includes(q));
+      }
+
+      const grid = document.getElementById('all-games-grid');
+      if (filtered.length > 0) {
+        grid.innerHTML = filtered.map(g => createGameCardHTML(g)).join('');
+      } else {
+        grid.innerHTML = `<div class="no-results">No games found matching your search criteria.</div>`;
+      }
+    }
+
+    // Render Individual Game View (Dynamic Iframe Loading)
+    function renderGamePlayPage(gameId) {
+      const game = GAMES_DATA.find(g => g.id === gameId);
+      if (!game) {
+        window.location.hash = '#games';
+        return;
+      }
+
+      // Track into in-memory Recently Played list
+      trackRecentlyPlayed(game);
+
+      // Set Metadata Text
+      document.getElementById('play-title').textContent = game.name;
+      document.getElementById('play-category').textContent = game.category;
+      document.getElementById('play-desc-title').textContent = game.name;
+      document.getElementById('play-description').textContent = game.description;
+
+      // Lazy load exact official game iframe
+      const iframeContainer = document.getElementById('iframe-container');
+      iframeContainer.innerHTML = `
+        <iframe 
+          src="${game.url}" 
+          title="${game.name}" 
+          allowfullscreen 
+          loading="lazy">
+        </iframe>
+      `;
+
+      // Render Related Games (Same category or random selection excluding current)
+      const related = GAMES_DATA.filter(g => g.id !== game.id && (g.category === game.category || Math.random() > 0.5)).slice(0, 3);
+      document.getElementById('related-games-grid').innerHTML = related.map(g => createGameCardHTML(g)).join('');
+    }
+
+    /* --------------------------------------------------
+       IN-MEMORY RECENTLY PLAYED TRACKING
+    -------------------------------------------------- */
+    function trackRecentlyPlayed(game) {
+      // Remove duplicate entry if exists
+      recentlyPlayedList = recentlyPlayedList.filter(g => g.id !== game.id);
+      // Unshift to front
+      recentlyPlayedList.unshift(game);
+      // Limit to 4 items
+      if (recentlyPlayedList.length > 4) {
+        recentlyPlayedList.pop();
+      }
+    }
+
+    /* --------------------------------------------------
+       SEARCH & FILTER HANDLERS
+    -------------------------------------------------- */
+    function handleGlobalSearch(e) {
+      const val = e.target.value;
+      if (e.key === 'Enter' || val.length > 0) {
+        searchQuery = val;
+        window.location.hash = '#games';
+        const gamesInput = document.getElementById('games-search');
+        if (gamesInput) gamesInput.value = val;
+        renderGamesPage();
+      }
+    }
+
+    function handleGamesSearch() {
+      searchQuery = document.getElementById('games-search').value;
+      renderGamesPage();
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      renderGamesPage();
+    }
+
+    /* --------------------------------------------------
+       EVENT LISTENERS
+    -------------------------------------------------- */
+    window.addEventListener('hashchange', router);
+    window.addEventListener('load', router);
+  </script>
+</body>
+</html>
